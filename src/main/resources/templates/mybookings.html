@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>CarRentalSystem</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<style type="text/css">
+	.nav-item{
+	margin: 10px;
+	width: 120px;
+	text-align: center;
+	
+	}
+	.nav-item:hover{
+	background-color: gray;
+	border-radius: 5px;
+	
+	}
+	nav{
+	width: 100%;
+	height: 60px; 
+	position: fixed;
+	top: 0;
+	}
+	.carbookbody {
+	margin: 10px;
+	padding: 20px;
+	border: solid green 2px;
+	}
+	
+	
+	.footer{
+	width:inherit;
+	height:auto;
+	background-color: black;
+	margin-top: 10px;
+	font-size: 20px;
+	color: white;
+	}
+	.fblock1{
+	margin-top:20px;
+	margin-right:20px;
+	margin-left:10px;
+	height: 300px;
+	width: 400px;
+	align-content: center;
+	}
+	.blocke{
+	display: inline-flex;
+	}
+	
+	.icones{ 
+	margin-left:10px; 
+ 	margin-top:50px; 
+ 	margin-right:5px; 
+ 	list-style:none; 
+ 	display: inline-flex; 
+ 	background: silver; 
+ 	border-radius: 5px; 
+ 	} 
+	
+ 	.icones>li{ 
+ 	width: 50px; 
+ 	height:50px; 
+	margin: 5px; 
+	padding: 15px; 
+ 	} 
+	
+ 	.icones>li:hover { 
+ 	background: white; 
+ 	border-radius: 5px; 
+	}
+	
+	.emailpr{
+	color: pink; margin-top: 30px; margin-left: 40px;
+	}
+	
+
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" th:href="@{/userdashboard}">Car Rental System</a>
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" th:href="@{/user/userdashboard}">Home</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/user/bookcars}">Book Car</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/user/mybookings}">My Booking</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/user/myaccount}">My Account</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+				<li class="emailpr">Email: <b th:text="${session.userName}" style="color: red;"></b></li>
+
+			</ul>
+		</div>
+	</nav>
+	
+	
+	
+	<div class="carbookbody">
+		<div class="row">
+			<h1>My Booking Details</h1>
+		</div>
+
+		<table class="table table-striped table-bordered">
+			<thead class="table-dark">
+				<tr>
+					<th>Booking Id</th>
+					<th>Full Name</th>
+					<th>Contact Number</th>
+					<th>Email</th>
+					<th>From Date</th>
+					<th>To Date</th>
+					<th>Car Id</th>
+					<th>User Id</th>
+					<th>Amount</th>
+					<th>Return Status</th>
+					<th>Action</th>
+					
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="booking: ${bookings}">
+					<td th:text="${booking.bookingid}"></td>
+					<td th:text="${booking.fullname}"></td>
+					<td th:text="${booking.mobile}"></td>
+					<td th:text="${booking.email}"></td>
+					<td th:text="${booking.fdate}"></td>
+					<td th:text="${booking.tdate}"></td>
+					<td th:text="${booking.carbean.carid}"></td>
+					<td th:text="${booking.userbean.userid}"></td>
+					<td th:text="${booking.amount}"></td>
+					<td>
+						<button  th:if="${booking.returnstatus.equals('No')}"  th:text="${booking.returnstatus}" class="btn btn-danger"> </button>
+						<button  th:unless="${booking.returnstatus.equals('No')}"  th:text="${booking.returnstatus}" class="btn btn-info"> </button>
+					</td>
+   					<td>
+   						<a th:if="${booking.returnstatus.equals('No')}" th:href="@{/user/return/{id}(id=${booking.bookingid})}" class="btn btn-primary">  Return Now  </a>
+   						<a th:unless="${booking.returnstatus.equals('No')}" th:href="@{#}" class="btn btn-success">Returned</a>
+   						
+					</td>
+					
+				</tr>
+			</tbody>
+
+		</table>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<footer class="footer">
+		<div class="blocke">
+			<div class="fblock1">
+				<h3>Car Rental System</h3>
+				<br>
+				<ul class="nav navbar-nav">
+					<li><a href="/index">Home</a></li>
+					<li><a href="#">AboutUs</a></li>
+					<li><a href="/userregister">Register</a></li>
+					<li><a href="index.html">Login</a></li>
+
+				</ul>
+			</div>
+			<div class="fblock1">
+			@copy 2021 Online Car Rental System<br>
+			
+					<ul class="icones">
+						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+    					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+    					<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+    					<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+   	 					<li><a href="#"><i class="fa fa-skype"></i></a></li>
+					</ul>
+			
+			</div>
+			<div class="fblock1">
+
+
+				<form action="userlogin" method="post" style="width: 300px">
+					<h3>
+						<b>Contact Us</b>
+					</h3>
+					<div class="form-group">
+						<label for="email1">Email address</label> <input type="email"
+							class="form-control" id="email1" name="email" placeholder="Email" />
+					</div>
+					<div class="form-group">
+						<label for="note">Note:</label> <input type="password"
+							class="form-control" id="note" name="note"
+							placeholder="Note text" />
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+	</footer>
+	<script src="jquery.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+
+	
+	
+</body>
+</html>

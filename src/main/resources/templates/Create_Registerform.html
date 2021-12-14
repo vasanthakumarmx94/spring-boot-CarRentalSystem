@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Car Rental System</title>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="main.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+<style type="text/css">
+.userregisterbody{
+
+}
+</style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a id="heading" class="navbar-brand" th:href="@{/index}">Car Rental System</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" th:href="@{/index}">Home</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/userregister}">Register</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/index}">Login</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{#}">Contact Us</a>
+				</li>
+
+			</ul>
+		</div>
+	</nav>
+
+
+<section class="userregisterbody">
+		<div class = "container">
+		<div class = "row">
+			<div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class = "text-center">User Registration Form </h1>
+				<div class = "card-body">
+					<form th:action="@{/process_register}" th:object = "${user}" method="POST">
+						<div class ="form-group">
+							<label> Name </label>
+							<input type = "text" name = "name" th:field = "*{name}" class = "form-control" placeholder="Enter Name" />
+						</div>
+						
+						<div class ="form-group">
+							<label> Mobile </label>
+							<input type = "text" name = "mobile" th:field = "*{mobile}" class = "form-control" placeholder="Enter Contact No" />
+						</div>
+						<div class="form-group">
+							<h4>Address Details</h4>
+						</div>
+						<div class ="form-group">
+							<label> State </label>
+							<input type = "text" name = "state" th:field = "*{state}" class = "form-control" placeholder="Enter State" />
+						</div>
+						<div class ="form-group">
+							<label> City </label>
+							<input type = "text" name = "city" th:field = "*{city}" class = "form-control" placeholder="Enter City" />
+						</div>
+						<div class ="form-group">
+							<label> PinCode </label>
+							<input type = "text" name = "pincode" th:field = "*{pincode}" class = "form-control" placeholder="Enter pincode" />
+						</div>
+						<div class ="form-group">
+							<label> Address </label>
+							<input type = "text" name = "address" th:field = "*{address}" class = "form-control" placeholder="Enter Address" />
+						</div>
+						<div class="form-group">
+							<h4><b>Login Credentials</b></h4>
+						</div>
+						<div class ="form-group">
+							<label> Email </label>
+							<input type = "email" name = "email" th:field = "*{email}" class = "form-control" placeholder="Enter Email" />
+						</div>
+						<div class ="form-group">
+							<label> Password </label>
+							<input type = "password" name = "password" th:field = "*{password}" class = "form-control" placeholder="Enter Password" />
+						</div>
+						
+						<div class = "box-footer">
+							<button type="submit" class = "btn btn-primary">Submit</button>
+							<button type="reset" class="btn btn-primary">ResetForm</button>
+						</div>
+					</form>
+				
+				</div>
+			</div>
+		</div>
+	</div>	
+</section>
+
+
+
+<footer class="footer">
+	<div class="blocke">
+		<div class="fblock1">
+		<h3>Car Rental System</h3><br>
+				<ul class="nav navbar-nav">
+					<li><a href="#" class="active">Home</a></li>
+					<li><a href="#">AboutUs</a></li>
+					<li><a href="#">Register</a></li>
+					<li><a href="#">Login</a></li>
+				</ul>
+		</div>
+		<div class="fblock1">
+		@copy 2021 Online Car Rental System<br>
+					<ul class="icones">
+						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+    					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+    					<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+    					<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+   	 					<li><a href="#"><i class="fa fa-skype"></i></a></li>
+					</ul>
+		
+		</div>
+		<div class="fblock1">
+					<form action="#" method="post" style="width: 300px">
+					<h3><b>Contact Us</b></h3>
+						<div class="form-group">
+							<label for="email1">Email address</label> 
+							<input type="email" class="form-control" id="email1" name="email" placeholder="Email" />
+						</div>
+						<div class="form-group">
+							<label for="note">Note:</label> 
+							<input type="password" class="form-control" id="note" name="note" placeholder="Note text" />
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+		</div>
+	</div>
+	</footer>
+	<script src="jquery.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+
+
+</body>
+</html>

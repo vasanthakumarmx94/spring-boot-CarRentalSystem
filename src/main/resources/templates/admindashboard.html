@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>CarRentalSystem</title>
+
+    <link th:rel="stylesheet" th:href="@{bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{main.css} "/>
+
+	<link th:rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"/>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+	
+	<style type="text/css">
+	.nav-item{
+	margin: 10px;
+	width: 120px;
+	text-align: center;
+	
+	}
+	.nav-item:hover{
+	background-color: gray;
+	border-radius: 5px;
+	
+	}
+	nav{
+	width: 100%;
+	height: 60px; 
+	position: fixed;
+	top: 0;
+	}
+	
+	#myCarousel{
+	height: 400px;
+	width:inherit;
+	border: solid green 2px;
+	margin: 10px;
+	border-radius: 5px;
+	}
+	
+	
+	
+	.footer{
+	width:inherit;
+	height:auto;
+	background-color: black;
+	margin-top: 10px;
+	font-size: 20px;
+	color: white;
+	}
+	.fblock1{
+	margin-top:20px;
+	margin-right:20px;
+	margin-left:10px;
+	height: 300px;
+	width: 400px;
+	align-content: center;
+	}
+	.blocke{
+	display: inline-flex;
+	}
+	
+	.icones{
+	margin-left:10px;
+	margin-top:50px;
+	margin-right:5px;
+	list-style:none;
+	display: inline-flex;
+	background: silver;
+	border-radius: 5px;
+	}
+	
+	.icones>li{
+	width: 50px;
+	height:50px;
+	margin: 5px;
+	padding: 15px;
+	}
+	
+	.icones>li:hover {
+	background: white;
+	border-radius: 5px;
+}
+.emailpr{
+color: pink; margin-top: 30px; margin-left: 40px;
+}
+	</style>
+	
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a id="heading" class="navbar-brand" href="@{/admindashboard}"> Car Rental System</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" th:href="@{/admin/admindashboard}">Home</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/admin/cars}">Cars Manage</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/admin/users}">Users Manage</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/admin/bookings}">Booking Manage</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a>
+				</li>
+
+			</ul>
+		</div>
+	</nav>
+
+
+	<div th:id="myCarousel" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" th:data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" th:data-slide-to="1"></li>
+			<li data-target="#myCarousel" th:data-slide-to="2"></li>
+			<li data-target="#myCarousel" th:data-slide-to="3"></li>
+		</ol>
+
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner" role="listbox">
+			<div class="item active">
+				<img th:src="@{/images/car23.jpg}" alt="baby 1" width="380" height="300"/>
+				
+			</div>
+			<div class="item">
+				<img th:src="@{images/car6.jpg}" alt="baby 2" width="500" height="500"/>
+			</div>
+			<div class="item">
+				<img th:src="@{images/car11.jpg}" alt="baby 3" width="500" height="500"/>
+			</div>
+			<div class="item">
+				<img th:src="@{images/carrental.jpg}" alt="baby 3" width="500" height="500"/>
+			</div>
+		</div>
+
+		<!-- Left and right controls -->
+		<a class="left carousel-control" href="#myCarousel" role="button"
+			data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
+			aria-hidden="true"></span> <span class="sr-only">Previous</span>
+		</a> <a class="right carousel-control" href="#myCarousel" role="button"
+			data-slide="next"> <span
+			class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+	<!-- corousel end -->
+
+
+
+
+
+
+
+<footer class="footer">
+		<div class="blocke">
+			<div class="fblock1">
+				<h3>Car Rental System</h3>
+				<br>
+				<ul class="nav navbar-nav">
+					<li><a href="/index">Home</a></li>
+					<li><a href="#">AboutUs</a></li>
+					<li><a href="/userregister">Register</a></li>
+					<li><a href="index.html">Login</a></li>
+
+				</ul>
+			</div>
+			<div class="fblock1">
+			@copy 2021 Online Car Rental System<br>
+			
+					<ul class="icones">
+						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+    					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+    					<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+    					<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+   	 					<li><a href="#"><i class="fa fa-skype"></i></a></li>
+					</ul>
+			
+			</div>
+			<div class="fblock1">
+
+
+				<form action="#" method="post" style="width: 300px">
+					<h1>
+						<b>Contact Us</b>
+					</h1>
+					<div class="form-group">
+						<label for="email1">Email address</label> <input type="email"
+							class="form-control" id="email1" name="email" placeholder="Email" />
+					</div>
+					<div class="form-group">
+						<label for="note">Note:</label> <input type="password"
+							class="form-control" id="note" name="note"
+							placeholder="Note text" />
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+	</footer>
+	<script src="jquery.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+
+
+
+
+
+</body>
+</html>

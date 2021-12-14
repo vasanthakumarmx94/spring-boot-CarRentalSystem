@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>CarRentalSystem</title>
+
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="main.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"/>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+	
+	<style type="text/css">
+	
+	.nav-item{
+	margin: 10px;
+	width: 120px;
+	text-align: center;
+	
+	}
+	.nav-item:hover{
+	background-color: gray;
+	border-radius: 5px;
+	
+	}
+	nav{
+	width: 100%;
+	height: 60px; 
+	position: fixed;
+	top: 0;
+	}
+	
+	.carlistbody{
+	margin-left: 10px;
+	margin-right: 10px;
+	border: 5px solid green;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: silver;
+	border-radius: 10px;
+	}
+	.carlistbody:hover {
+	border: 5px solid purple;
+	
+	}
+	
+	.footer{
+	width:inherit;
+	height:auto;
+	background-color: black;
+	margin-top: 10px;
+	font-size: 20px;
+	color: white;
+	}
+	.fblock1{
+	margin-top:20px;
+	margin-right:20px;
+	margin-left:10px;
+	height: 300px;
+	width: 400px;
+	align-content: center;
+	}
+	.blocke{
+	display: inline-flex;
+	}
+	
+	.icones{ 
+	margin-left:10px; 
+ 	margin-top:50px; 
+ 	margin-right:5px; 
+ 	list-style:none; 
+ 	display: inline-flex; 
+ 	background: silver; 
+ 	border-radius: 5px; 
+ 	} 
+	
+ 	.icones>li{ 
+ 	width: 50px; 
+ 	height:50px; 
+	margin: 5px; 
+	padding: 15px; 
+ 	} 
+	
+ 	.icones>li:hover { 
+ 	background: white; 
+ 	border-radius: 5px; 
+	}
+
+	.cardspart{
+	margin:10px 20px;
+	display: inline-flex;
+	padding-left: 40px;
+	padding-bottom: 30px;
+	padding-top: 10px;
+	padding-right:30px;
+	border: 2px solid outset;
+	border-radius: 10px;
+	
+	}
+	.cardspart:hover{
+	 box-shadow: 5px 10px 20px Green inset;
+	
+	}
+	.card{
+	border-radius: 10px;
+	}
+	
+	.availbuttuns{
+	align-self: center; 
+	padding:3px 180px;
+ 	background-color:pink;
+ 	border: 1px solid gray; 
+	border-radius: 10px;
+	margin-top: 15px;
+	}
+	.emailpr{
+	color: pink; margin-top: 30px; margin-left: 40px;
+	}
+
+	</style>
+	
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+		<!-- Brand -->
+		<a class="navbar-brand" th:href="@{user/userdashboard}">Car Rental System</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" th:href="@{/user/userdashboard}">Home</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/user/bookcars}">Book Car</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/user/mybookings}">My Booking</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/user/myaccount}">My Account</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+				<li class="emailpr">Email: <b th:text="${session.userName}" style="color: red;"></b></li>
+
+			</ul>
+		</div>
+	</nav>
+
+<div class="carlistbody">
+		
+				<h1>Available Cars Book Now</h1>
+		
+				<div th:each="car: ${cars}" class="cardspart">
+				<div class="card" style="width: 50rem; height: 30rem;" >
+  					<div class="card-body">
+  						<h4 class="card-title"><b>CarNo: </b><span th:text="${car.carnumaber}"></span></h4>
+    					<h4 class="card-title"><b>CarName: </b><span th:text="${car.carname}"></span></h4>
+    					<h4 class="card-subtitle mb-3 text-muted"><b>CarCompany: </b><span th:text="${car.carcompany}"></span></h4>
+    					<h4 class="card-subtitle mb-3 text-muted"><b>CarCity: </b><span th:text="${car.carcity}"></span></h4>
+   						<h4 class="card-text"><b>Car Description: </b><span th:text="${car.cardescription}"></span> </h4>
+   						<button class="btn btn-secondary"><h4 class="card-text"><b>Price Per Day:</b>RS. <span th:text="${car.priceperday}"> </span> </h4></button>
+   						<button class="btn btn-info"><h4 class="card-text"><span th:text="${car.issustatus}"> </span> </h4></button><br><br>
+   						
+   						<div class="availbuttuns" >
+   							<h1><a th:if="${car.issustatus.equals('Available')}" th:href="@{/user/booknow/new/{id}(id=${car.carid})}" class="btn btn-primary">  Book Now  </a>
+   							<a th:if="${car.issustatus.equals('Not Available')}" th:href="@{#}" class="btn btn-danger">Book Now</a></h1>
+   						</div>		
+  					</div>
+				</div>
+				
+				</div>
+				
+				
+				
+</div>
+	
+
+
+
+<footer class="footer">
+		<div class="blocke">
+			<div class="fblock1">
+				<h3>Car Rental System</h3>
+				<br>
+				<ul class="nav navbar-nav">
+					<li><a href="/index">Home</a></li>
+					<li><a href="#">AboutUs</a></li>
+					<li><a href="/userregister">Register</a></li>
+					<li><a href="index.html">Login</a></li>
+
+				</ul>
+			</div>
+			<div class="fblock1">
+			@copy 2021 Online Car Rental System<br>
+			
+					<ul class="icones">
+						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+    					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+    					<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+    					<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+   	 					<li><a href="#"><i class="fa fa-skype"></i></a></li>
+					</ul>
+			
+			</div>
+			<div class="fblock1">
+
+
+				<form action="userlogin" method="post" style="width: 300px">
+					<h3>
+						<b>Contact Us</b>
+					</h3>
+					<div class="form-group">
+						<label for="email1">Email address</label> <input type="email"
+							class="form-control" id="email1" name="email" placeholder="Email" />
+					</div>
+					<div class="form-group">
+						<label for="note">Note:</label> <input type="password"
+							class="form-control" id="note" name="note"
+							placeholder="Note text" />
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+	</footer>
+	<script src="jquery.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+
+
+</body>
+</html>

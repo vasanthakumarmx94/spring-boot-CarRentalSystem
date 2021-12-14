@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Car Rental System</title>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="main.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+	rel="stylesheet" />
+
+<style type="text/css">
+
+	.container-fluid{
+	border: 2px solid red;
+	width: 400px;
+	height:330px;
+	padding-top: 30px;
+	padding-left: 30px;
+	background-color: olive;
+	border-radius: 15px;
+	}
+	.body1{
+	padding-top: 30px;
+	}
+	
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a id="heading" class="navbar-brand" th:href="@{/index}">Car
+			Rental System</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" th:href="@{/index}">Home</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/userregister}">Register</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/index}">User Login</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/adminlogin}">Admin Login</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{#}">Contact
+						Us</a></li>
+
+			</ul>
+		</div>
+	</nav>
+
+
+
+	<section class="body1">
+		<div class="container-fluid">
+			<div class="row">
+				
+					<div class="col-md-6">
+						<h1>User Login</h1>
+						<p th:if="${loginError}" class="error">Wrong user or password</p>
+						<form th:action="@{/login}" method="post" style="width: 300px">
+							<div th:if="${param.error}">
+								<div class="alert alert-danger">Invalid username or password.</div>
+							</div>
+							<span></span>
+							<div class="form-group">
+									<label for="email1">Email address</label> <input type="email"
+									class="form-control" id="username" name="email" placeholder="Email" />
+							</div>
+							<div class="form-group">
+								<label for="password1">Password</label> <input type="password" class="form-control" id="password1" name="password" placeholder="Password" />
+							</div>
+							<button type="submit" class="btn btn-primary"><h2>Login</h2></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		
+	</section>
+
+
+	<footer class="footer">
+		<div class="blocke">
+			<div class="fblock1">
+				<h3>Car Rental System</h3>
+				<br>
+				<ul class="nav navbar-nav">
+					<li><a href="/index">Home</a></li>
+					<li><a href="#">AboutUs</a></li>
+					<li><a href="/userregister">Register</a></li>
+					<li><a href="index.html">Login</a></li>
+
+				</ul>
+			</div>
+			<div class="fblock1">
+					<ul class="icones">
+						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+    					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+    					<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+    					<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+   	 					<li><a href="#"><i class="fa fa-skype"></i></a></li>
+					</ul>
+					<br><br><br>
+					@copy 2021 Online Car Rental System<br>
+			
+			</div>
+			<div class="fblock1">
+
+
+				<form action="userlogin" method="post" style="width: 300px">
+					<h3>
+						<b>Contact Us</b>
+					</h3>
+					<div class="form-group">
+						<label for="email1">Email address</label> <input type="email"
+							class="form-control" id="email1" name="email" placeholder="Email" />
+					</div>
+					<div class="form-group">
+						<label for="note">Note:</label> <input type="password"
+							class="form-control" id="note" name="note"
+							placeholder="Note text" />
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+	</footer>
+	<script th:src="jquery.min.js"></script>
+	<script th:src="bootstrap.min.js"></script>
+
+
+</body>
+</html>
