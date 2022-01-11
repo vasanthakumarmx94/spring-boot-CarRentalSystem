@@ -16,6 +16,20 @@
 	
 	<style type="text/css">
 	
+	.container-fluid{
+	border: 2px solid red;
+	width: 400px;
+	height:330px;
+	padding-top: 30px;
+	padding-left: 30px;
+	background-color: olive;
+	border-radius: 15px;
+	}
+	.body1{
+	padding-top: 30px;
+	}
+	
+	
 	.nav-item{
 	margin: 10px;
 	width: 120px;
@@ -106,7 +120,6 @@
 	<section class="body1">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="adminglag">
 					<div class="col-md-6">
 						<h1>Admin Login</h1>
 						<p th:if="${loginError}" class="error">Wrong user or password</p>

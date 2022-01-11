@@ -39,12 +39,13 @@ public class UserController {
 	BookingServiceImp bookingServiceImp;
 	
 	
-	// user dashboard setting session 
-	// http://localhost:8080/admindashboard
+	// user DashBoard setting session 
+	// http://localhost:8080/userdashboard
 		@RequestMapping(value = "/user/userdashboard", method = RequestMethod.GET)
 		//@GetMapping("/user/userdashboard")
 		public String userdashboard(HttpServletRequest request,Principal principal,Model model) {
 			HttpSession session=request.getSession();
+			
 			String email=principal.getName();
 			 // store data in session
 		    session.setAttribute("userName", email);
@@ -52,17 +53,17 @@ public class UserController {
 		}
 	
 
-		@GetMapping("/user/cars")
-		public String listCars(Model model,HttpSession session) {
-			
-			if (session.getAttribute("userName") == null){
-		        System.out.println("session is not exists");
-		        // how to redirect user
-		        return "redirect:/index";
-		    }
-			model.addAttribute("cars", carServiceImp.getAllCars());
-			return "cars";
-		}
+//		@GetMapping("/user/cars")
+//		public String listCars(Model model,HttpSession session) {
+//			
+//			if (session.getAttribute("userName") == null){
+//		        System.out.println("session is not exists");
+//		        //
+//		        return "redirect:/index";
+//		    }
+//			model.addAttribute("cars", carServiceImp.getAllCars());
+//			return "cars";
+//		}
 	
 		@GetMapping("/user/bookcars")
 		public String bookcars(Model model,HttpSession session) {
@@ -88,11 +89,11 @@ public class UserController {
 			String email=principal.getName();
 			UserBean user=userServiceImp.getUserByEmail(email);
 			model.addAttribute("bookings",bookingServiceImp.getByUserbean(user));
-			return "mybookings";        // html file of mybookingdetails
+			return "mybookings";        
 		}
 	
 	
-		// after click booknow create a form an fill details to booking 
+		// after click bookNow create a form an fill details to booking 
 		@GetMapping("/user/booknow/new/{id}")
 		public String createCarForm(@PathVariable Long id,Model model,HttpSession session) {
 			if (session.getAttribute("userName") == null){
@@ -108,7 +109,7 @@ public class UserController {
 			carbook.setUserbean(user);
 			model.addAttribute("carbook", carbook);
 			model.addAttribute("userbean",user);
-			return "Create_Carbook";	// form name
+			return "Create_Carbook";	
 		}
 		
 		// after submit save carbooking details also update car table 
@@ -123,6 +124,7 @@ public class UserController {
 				carbook.setAmount(Math.abs(days*amt));
 				carbook.setReturnstatus("No");
 				bookingServiceImp.saveBookCars(carbook);
+				
 				// updating car availability 
 				car.setIssustatus("Not Available");
 				carServiceImp.updateCar(car);	
@@ -143,7 +145,7 @@ public class UserController {
 			carbook.setReturnstatus("Yes");
 			bookingServiceImp.updateCarbook(carbook);
 			
-			//update issuestatus in  car table Available or not
+			//update issuestatus in  car table to Available 
 			CarBean car = carServiceImp.getCarById(carbook.getCarbean().getCarid());
 			car.setIssustatus("Available");
 			carServiceImp.updateCar(car);
@@ -160,8 +162,21 @@ public class UserController {
 			
 			String email=principal.getName();
 			model.addAttribute("user",userServiceImp.getUserByEmail(email));
-			return "myaccount";        // html file of profile account
+			return "myaccount";      
 		}
+		@GetMapping("/user/payslip/{id}")
+		public String payslip(@PathVariable Long id,Model model,HttpSession session) {
+			if (session.getAttribute("userName") == null){
+		        System.out.println("session is not exists");
+		        // how to redirect user
+		        return "redirect:/index";
+		    }
+			
+			
+			model.addAttribute("bookingdetail",bookingServiceImp.getCarBookingById(id));
+			return "viewpayslip";        
+		}
+		
 		
 	
 	

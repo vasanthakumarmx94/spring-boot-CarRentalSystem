@@ -126,7 +126,8 @@
 					<th>User Id</th>
 					<th>Amount</th>
 					<th>Return Status</th>
-					<th>Action</th>
+					<th colspan=2>Action</th>
+					
 					
 				</tr>
 			</thead>
@@ -149,6 +150,11 @@
    					<td>
    						<a th:if="${booking.returnstatus.equals('No')}" th:href="@{/user/return/{id}(id=${booking.bookingid})}" class="btn btn-primary">  Return Now  </a>
    						<a th:unless="${booking.returnstatus.equals('No')}" th:href="@{#}" class="btn btn-success">Returned</a>
+   						
+					</td>
+					
+					<td>
+   						<a th:if="${booking.returnstatus.equals('Yes')}" th:href="@{/user/payslip/{id}(id=${booking.bookingid})}" class="btn btn-success">View PaySlip</a>
    						
 					</td>
 					

@@ -38,12 +38,13 @@
 	.card{
 	background-color: silver;
 	margin-left: 280px;
-	border: 4px solid pink;
-	border-radius: 10px;
-	height: 350px;
-	width:400px;
-	font-size: 20px;
 	
+	border-radius: 10px;
+	height: 550px;
+	
+	}
+	card-body{
+	margin: 30px;
 	}
 	
 	.footer{
@@ -92,10 +93,20 @@
 	color: pink; margin-top: 30px; margin-left: 40px;
 	}
 	
-</style>
-
+	table{
+	width:500px;
+	margin-top: 10px;
+	margin-left: 50px;
+	font-size: 20px;
+	
+	}
+	
+	
+	</style>
+	
 </head>
 <body>
+
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
 		<!-- Brand -->
 		<a class="navbar-brand" th:href="@{/userdashboard}">Car Rental System</a>
@@ -117,45 +128,52 @@
 			</ul>
 		</div>
 	</nav>
-
-
-
-<section class="profilebody">
-		<div class = "container">
+	
+	
+	<section class="payslip">
+		<div class = "container1">
 		<div class = "row">
 			<div class ="col-lg-6 col-md-6  container justify-content-center card">
-				<h1 class = "text-center"> My Profile </h1>
+			<span>----------------------------------------------------------------------------------------------------------------------------------------</span>
+				<h1 class = "text-center" > Pay Slip </h1><br>
+			<span>-----------------------------------------------------------------------------------------------------------------------------------------</span>
+				<h3 class = "text-center"style="color:green"> <b>Car Rental Management System</b> </h3>
 				<div class = "card-body" style="align-self: center">
 					<table >
-					<tr><th> Name: </th><td th:text="${user.name}"> </td></tr>
+					<tr><th> BookingNumber: </th><td th:text="${bookingdetail.bookingid}"> </td></tr>
 					<tr><th>       </th><td> 						</td></tr>
-					<tr><th> Contact Number: </th><td th:text="${user.mobile}"> </td></tr>
+					<tr><th> FullName: </th><td th:text="${bookingdetail.fullname}"> </td></tr>
 					<tr><th>       </th><td> 						</td></tr>
-					<tr><th> State: </th><td th:text="${user.state}"> </td></tr>
+					<tr><th> ContactNumber: </th><td th:text="${bookingdetail.mobile}"> </td></tr>
 					<tr><th>       </th><td> 						</td></tr>
-					<tr><th> City: </th><td th:text="${user.city}"> </td></tr>
+					<tr><th> Email: </th><td th:text="${bookingdetail.email}"> </td></tr>
 					<tr><th>       </th><td> 						</td></tr>
-					<tr><th> PinCode: </th> <td th:text="${user.pincode}"></td></tr>
+					<tr><th> FromDate: </th> <td th:text="${bookingdetail.fdate}"></td></tr>
 					<tr><th>       </th><td> 						</td></tr>
-					<tr><th> Address: </th> <td th:text="${user.address}"></td></tr>
-					<tr><th>       </th><td> 						</td></tr>
-					<tr><th> Email: </th><td th:text="${user.email}"> </td></tr>
+					<tr><th> ToDate: </th> <td th:text="${bookingdetail.tdate}"></td></tr>
 					
-						
+					<tr><th>       </th><td> 						</td></tr>
+					<tr><th> CarNumber: </th><td th:text="${bookingdetail.carbean.carnumaber}"> </td></tr>
+					
 					</table>
+					<div>
+					<span class = "text-center">---------------------------------------------------------------------------------------------------------------------------------------</span>
+					<h1><b> Total Amount Paid :</b><b th:text="${bookingdetail.amount}"></b></h1>
+					<span>---------------------------------------------------------------------------------------------------------------------------------------</span>
+				
+					</div>
+					
 				
 				</div>
 			</div>
 		</div>
 	</div>	
 </section>
-
-
-
-
-
-
-<footer class="footer">
+	
+	
+	
+	
+	<footer class="footer">
 		<div class="blocke">
 			<div class="fblock1">
 				<h3>Car Rental System</h3>
@@ -198,6 +216,10 @@
 	</footer>
 	<script src="jquery.min.js"></script>
 	<script src="bootstrap.min.js"></script>
+	
+
+
+
 
 </body>
 </html>
